@@ -1,7 +1,7 @@
 
 ![ADG logo](images/crest logo.jpg)
 
-#lmuadg
+#lmuadg.com
 Joel Homan
 
 ## Table of Contents
