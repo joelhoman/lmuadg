@@ -11,7 +11,7 @@ Joel Homan
 
 ##2.0	Preliminary Project Proposal
 
-lmuadg is a domain website that will be created for Alpha Delta Gamma Lambda Chapter at Loyola Marymount University.  The website will serve to keep students, faculty, alumni, and brothers from other chapters up to date on the current operations of the chapter, learn about what the chapter values and stands for, and send a donation to the chapter.  Since the site will need to be updated on a semi-annual basis, there must be easy to use tools in place for others to edit the site who do not have any web design or programming experience.  In addition to the website, an editing tool specific to the site will be created to easily allow the site to be updated.
+lmuadg is a domain website that will be created for Alpha Delta Gamma Lambda Chapter at Loyola Marymount University.  The website will serve to keep students, faculty, alumni, and brothers from other chapters up to date on the current operations of the chapter, describe what the chapter values and stands for, and allow users to send a donation to the chapter.  Since the site will need to be updated on a semi-annual basis, there must be easy to use tools in place for others to edit the site who do not have any web design or programming experience.  In addition to the website, an editing tool specific to the site will be created to easily allow the site to be updated.
 
 ##3.0	Proposal Document and Project Proposal Slides
 
