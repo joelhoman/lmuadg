@@ -1,3 +1,9 @@
+
+![ADG logo](images/crest logo.jpg)
+
+#lmuadg
+Joel Homan
+
 ## Table of Contents
 
 ###2.0	Preliminary Project Proposal
