@@ -63,6 +63,8 @@ The project shall consist of two parts.  Part one is a public domain website for
 
 #####5.2.3.3	The GUI for the editing tool shall require a log in including a username and password in order to have access to modify the database from the tool.
 
+#####5.2.3.4	The GUI for the editing tool shall use a submit button to submit all proposed changes on the currently selected tab to the database.
+
 
 ###5.3	Performance Requirements
 
@@ -85,4 +87,6 @@ The project shall consist of two parts.  Part one is a public domain website for
 ####5.4.1	Development Environment Requirements
 
 ####5.4.2	Execution Environment Requirements	
+
+#####5.4.2.1	Both the domain website and the editing tool shall be accessed through the following web browsers: Google Chrome 53.0 and up, Firefox 50.0, Safari 9.1, Microsoft Edge 20.1
 
