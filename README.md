@@ -8,6 +8,7 @@ Joel Homan
 
 ###2.0	Preliminary Project Proposal
 ###3.0	Proposal Document and Project Proposal Slides
+###5.0	Software Requirements Specification
 
 ##2.0	Preliminary Project Proposal
 
@@ -25,4 +26,20 @@ While the site will only pose minor challenge and a lot of time commitment, the 
 
 The remainder of the time will be spent refining the editing tool and making it as easy to use as possible.  I currently have a website preview interface set as a stretch goal, which essentially will mean the tool will take on the appearance of the current site, and new content can be typed or drag and dropped onto the preview to update the database, giving the user a snapshot of what the site will look like before submitting it to the live version.
 I feel based on experience with my 401 project that this project is both of appropriate difficulty, but is also a more manageable project.  Currently my MVP encompasses all the goals of my customer, other than the preview in the editing tool, which is a personal stretch goal that would make the tool much more user friendly.  I also have a strong interest in completing this project, as I have served as an active for the past 3 years and was the past chapter president.  While I have been active, we have never had a website for our chapter, while many of the other Greek organizations on our campus do.  This will also greatly help us maintain contact with the school, our alumni from our chapter, and our other chapters nationwide.
+
+##5.0	Software Requirements Specification
+
+###5.1	Introduction
+
+The project shall consist of two parts.  Part one is a public domain website for Alpha Delta Gamma Lambda Chapter at Loyola Marymount University.  Visitors to the site shall be able to learn about the chapter regarding our history, values, and our current operations.  This will be available both through articles and images posted to the site as well as live social media updates from our various platforms including Facebook, Instagram, and Twitter.  Visitors will also be able to donate to the chapter via PayPal from the site.  All static images, text, and articles are to be loaded from a stored database.  Part two of the project is an editing tool available only to select administrators.  Using the tool, administrators will be able to modify the website by changing the contents of the database.  Users of the tool should require no programming experience nor should extensive training with the tool be required.
+
+###5.2	Functional Requirements
+
+###5.3	Performance Requirements
+
+###5.4	Environment Requirements
+
+####5.4.1	Development Environment Requirements
+
+####5.4.2	Execution Environment Requirements	
 
