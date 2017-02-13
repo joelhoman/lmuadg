@@ -1,0 +1,25 @@
+{
+  "name": "lmuadg",
+  "version": "1.0.0",
+  "description": "Public domain site for Alpha Delta Gamma Lambda Chapter",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joelhoman/lmuadg.git"
+  },
+  "keywords": [
+    "lmuadg"
+  ],
+  "author": "Joel Homan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joelhoman/lmuadg/issues"
+  },
+  "homepage": "https://github.com/joelhoman/lmuadg#readme",
+  "dependencies": {
+    "materialize-css": "^0.98.0"
+  }
+}
