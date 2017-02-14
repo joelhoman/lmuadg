@@ -2,6 +2,14 @@
 	height: 50px;
 }
 
+footer.page-footer {
+	background-color:  #F75D59;
+}
+
+.carnation-red {
+	background-color: #F75D59;
+}
+
 .nav-title {
 	padding-left: 20px;
 }

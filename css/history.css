@@ -1,0 +1,20 @@
+main,body {
+	background-color: #eeeeee;
+}
+
+.history-article-container {
+	background-color: #ffffff;
+}
+
+.article-image {
+	margin: 20px;
+	width: 200px;
+}
+
+.article-title {
+	text-align: center;
+}
+
+.article-content {
+	text-align: left;
+}
