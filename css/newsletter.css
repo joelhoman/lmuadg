@@ -2,18 +2,27 @@ main,body {
 	background-color: #eeeeee;
 }
 
-.history-article-container {
+.newsletter-article-container {
 	background-color: #ffffff;
 }
 
 .article-img {
 	margin: 20px;
+	margin-bottom: 0px;
 	position: relative;
 	width: 90%;
 }
 
 .article-title {
 	text-align: center;
+}
+
+.article-details {
+	text-align: left;
+	margin-left: 5%;
+	color: #cccccc;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 .article-content {
