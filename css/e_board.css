@@ -1,0 +1,28 @@
+main,body {
+	background-color: #eeeeee;
+}
+
+.e-board-member-container {
+	background-color: #ffffff;
+}
+
+.member-image-container {
+	vertical-align: center;
+}
+
+.member-photo {
+	margin: 5%;
+	height: 100%;
+}
+
+#position-name {
+	margin-bottom: 0px;
+}
+
+#member-name {
+	margin-top: 2px;
+}
+
+.member-description {
+	margin: 0px;
+}
