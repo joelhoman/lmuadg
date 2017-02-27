@@ -70,16 +70,17 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-$(function () {
-    $('.navbar-placeholder').load('../navbar/navbar.html', function () {
+/* WEBPACK VAR INJECTION */(function(__dirname) {$(function () {
+    $('.navbar-placeholder').load(__dirname + 'public/navbar/navbar.html', function () {
     }); 
     $('.parallax').parallax();
-    $('.footer-placeholder').load('../footer/footer.html', function () {
+    $('.footer-placeholder').load(__dirname + 'public/footer/footer.html', function () {
     });
 });
 
     
 
+/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
 /* 1 */

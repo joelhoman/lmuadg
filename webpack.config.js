@@ -1,11 +1,11 @@
 module.exports = {
   entry: {
   	app: [
-  		'./src/index.js',
+  		'./public/src/index.js',
   	]
   },
   output: {
-  	path: './bin',
+  	path: './public/bin',
   	filename: 'index.bundle.js'
   }
 };
