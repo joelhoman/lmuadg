@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/joelhoman/lmuadg#readme",
   "dependencies": {
+    "lodash": "^4.17.4",
     "materialize-css": "^0.98.0"
+  },
+  "devDependencies": {
+    "webpack": "^2.2.1"
   }
 }
