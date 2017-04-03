@@ -1,4 +1,4 @@
-![ADG logo](public/images/crest logo.jpg)
+[![ADG logo](public/images/crest logo.jpg)
 
 # lmuadg.com
 Joel Homan
