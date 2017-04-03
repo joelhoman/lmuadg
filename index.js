@@ -1,6 +1,4 @@
 const express = require('express');
-const MongoClient = require('mongodb').MongoClient;
-const co = require('co');
 // const assert = require('assert');
 
 const app = express();
@@ -15,20 +13,5 @@ app.get('/', (request, response) => {
 
 app.listen(app.get('port'), () => {
   console.log('Node app is running on port', app.get('port'));
-});
-
-co(function* () {
-  // Connection URL
-  const url = 'mongodb://db_reader:db_reader@ds129600.mlab.com:29600/heroku_r48npwqx';
-  // Use connect method to connect to the Server
-  const db = yield MongoClient.connect(url);
-  // Close the connection
-  db.collection('eboard').find({}).toArray((err2, items) => {
-    if (err2) {
-      throw err2;
-    }
-  });
-}).catch((err) => {
-  console.log(err.stack);
 });
 

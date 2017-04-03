@@ -21,9 +21,6 @@
   },
   "homepage": "https://github.com/joelhoman/lmuadg#readme",
   "dependencies": {
-    "babel": "^6.23.0",
-    "babel-core": "^6.24.0",
-    "babel-loader": "^6.4.1",
     "express": "^4.14.1",
     "foreman": "2.0.0",
     "lodash": "^4.17.4",
@@ -31,6 +28,9 @@
     "mongodb": "^2.2.25"
   },
   "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.1.2",
     "eslint-plugin-import": "^2.2.0",

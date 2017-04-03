@@ -1,3 +1,6 @@
+let path = require('path');
+let webpack = require('webpack');
+
 module.exports = {
   entry: {
     app: [
@@ -6,11 +9,10 @@ module.exports = {
     ],
   },
   output: {
-    path: './public/bin',
+    path: path.resolve(__dirname, './public/bin'),
     filename: 'index.bundle.js',
   },
   node: {
-    console: true,
     fs: 'empty',
     net: 'empty',
     tls: 'empty',

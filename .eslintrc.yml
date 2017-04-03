@@ -12,3 +12,4 @@ env:
   node: true
   mongo: true
   jquery: true
+  webpack: true
