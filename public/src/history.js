@@ -1,7 +1,3 @@
-$(function () {
-
-	let articleContainer = $('.history-article-container');
-
-	//articleContainer.append();
-
+$(() => {
+  // let articleContainer = $('.history-article-container');
 });

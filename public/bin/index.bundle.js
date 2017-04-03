@@ -63,29 +63,37 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports) {
 
-/* WEBPACK VAR INJECTION */(function(__dirname) {$(function () {
-    $('.navbar-placeholder').load(__dirname + 'navbar/navbar.html', function () {
-    }); 
-    $('.parallax').parallax();
-    $('.footer-placeholder').load(__dirname + 'footer/footer.html', function () {
-    });
+$(() => {
+  // let memberContainer = $('.e-board-member-container');
 });
 
-    
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+/* WEBPACK VAR INJECTION */(function(__dirname) {$(() => {
+  $('.navbar-placeholder').load(__dirname + 'navbar/navbar.html', () => {
+  });
+  $('.parallax').parallax();
+  $('.footer-placeholder').load(__dirname + 'footer/footer.html', () => {
+  });
+});
 
 /* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(1);
 module.exports = __webpack_require__(0);
 
 
