@@ -13,6 +13,9 @@ app.get('/', (request, response) => {
   response.sendFile(`${__dirname}/public/index.html`);
 });
 
+app.listen(app.get('port'), () => {
+  console.log('Node app is running on port', app.get('port'));
+});
 
 co(function* () {
   // Connection URL
@@ -24,9 +27,6 @@ co(function* () {
     if (err2) {
       throw err2;
     }
-    app.listen(app.get('port'), () => {
-      console.log('Node app is running on port', app.get('port'));
-    });
   });
 }).catch((err) => {
   console.log(err.stack);
