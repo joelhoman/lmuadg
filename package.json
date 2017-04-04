@@ -23,9 +23,9 @@
   "dependencies": {
     "express": "^4.14.1",
     "foreman": "2.0.0",
-    "lodash": "^4.17.4",
     "materialize-css": "^0.98.0",
-    "mongodb": "^2.2.25"
+    "mongodb": "^2.2.25",
+    "nunjucks": "^3.0.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",
