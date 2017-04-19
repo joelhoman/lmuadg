@@ -22,6 +22,8 @@
     </div>
 
     <div class="container e-board-member-container">
+      {% block test %}
+      {% endblock %}
       <div class="row">
         <div class="col s2 m3 member-image-container">
           <img class="responsive-img member-photo" src="../images/sample_raycraft.jpg">
@@ -93,10 +95,9 @@
     <footer>
       <div class="footer-placeholder"></div>
     </footer>
-
+    <script type="text/javascript" src="https://mozilla.github.io/nunjucks/files/nunjucks.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <script src="nunjucks.js"></script>
     <script type="text/javascript" src="../bin/index.bundle.js"></script>
   </body>
 </html>
