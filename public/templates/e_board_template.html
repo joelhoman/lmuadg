@@ -1,5 +1,28 @@
 {% extends "../e_board/e_board.html" %}
 
-{% block test %}
-TEST
+{% block eboard %}
+	{% asyncEach member in eboardMembers %}
+    <div class="container e-board-member-container">
+      <div class="row">
+        <div class="col s2 m3 member-image-container">
+          <img class="responsive-img member-photo" src="../images/sample_raycraft.jpg">
+        </div>
+
+        <div class="col s10 m9">
+          <h4 id="position-name">{{ member.position }}</h4>
+        </div>
+
+        <div class="col s10 m9">
+          <h5 id="member-name">{{ member.name }}</h5>
+        </div>
+
+        <div class="col s10 m9 article-container">
+          <hr/>
+          <p class="member-description" id="member-year">Year: {{ member.year }}</p>
+          <p class="member-description" id="member-major">Major: {{ member.major }}</p>
+          <p id="member-description">{{ member.description }}</p>
+        </div>
+      </div>
+    </div>
+  {% endeach %}
 {% endblock %}

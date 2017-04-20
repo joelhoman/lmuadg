@@ -10,6 +10,7 @@ const url = 'mongodb://db_reader:db_reader@ds129600.mlab.com:29600/heroku_r48npw
 nunjucks.configure('public', {
   autoescape: true,
   watch: true,
+  async: true,
   express: app,
 });
 
@@ -74,7 +75,26 @@ co(function* () {
     console.log('Node app is running on port', app.get('port'));
   });
   app.get('/e_board/e_board.html', (request, response) => {
-    response.send(nunjucks.render('templates/e_board_template.html'));
+    // response.send(nunjucks.render('templates/e_board_template.html', (err, res) => {
+    //   if (err) {
+    //     throw err;
+    //   } else {
+    //     return res;
+    //     // return getEboardMembers(db,
+    //     //  eboardMembers => ({ eboardMembers: eboardMembers[0].members }));
+    //   }
+    // }));
+    getEboardMembers(db, (eboardMembers) => {
+      const data = ({ eboardMembers: eboardMembers[0].members });
+      nunjucks.render('templates/e_board_template.html', data, (err, res) => {
+        if (err) {
+          throw err;
+        } else {
+          response.send(res);
+        }
+      });
+    });
+    // response.send(nunjucks.render('templates/e_board_template.html'));
   });
   app.get('/', (request, response) => {
     response.sendFile(path.join(__dirname, '/public/index.html'));
@@ -91,17 +111,6 @@ co(function* () {
   //   getNewsletterArticles(db, (items) => {
   //     res.render('newsletter.nunjucks', { items });
   //   });
-  // });
-  // nunjucks.render('templates/e_board_template.html', (err, res) => {
-  //   if (err) {
-  //     throw err;
-  //   } else {
-  //     res.render('e_board/e_board.html');
-  //     return getEboardMembers(db, (eboardMembers) => {
-  //       console.log(eboardMembers[0].members);
-  //       return { eboardMembers: eboardMembers[0].members };
-  //     });
-  //   }
   // });
 }).catch((err) => {
   console.log(err.stack);
