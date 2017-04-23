@@ -59,34 +59,16 @@ const getHomeData = (db, callback) => {
     callback(items);
   });
 };
-// const getDataFromMongoDB = (collection, callback) => {
-//   MongoClient.connect(url, (err, db) => {
-//     db.collection(collection).find({}).toArray((err, docs) => {
-//       callback(docs);
-//     });
-//   });
-// };
 
 co(function* () {
-  // Connection URL
-  // Use connect method to connect to the Server
   const db = yield MongoClient.connect(url);
   app.listen(app.get('port'), () => {
     console.log('Node app is running on port', app.get('port'));
   });
   app.get('/e_board/e_board.html', (request, response) => {
-    // response.send(nunjucks.render('templates/e_board_template.html', (err, res) => {
-    //   if (err) {
-    //     throw err;
-    //   } else {
-    //     return res;
-    //     // return getEboardMembers(db,
-    //     //  eboardMembers => ({ eboardMembers: eboardMembers[0].members }));
-    //   }
-    // }));
     getEboardMembers(db, (eboardMembers) => {
-      const data = ({ eboardMembers: eboardMembers[0].members });
-      nunjucks.render('templates/e_board_template.html', data, (err, res) => {
+      const eboardData = ({ eboardMembers: eboardMembers[0].members });
+      nunjucks.render('templates/e_board_template.html', eboardData, (err, res) => {
         if (err) {
           throw err;
         } else {
@@ -94,78 +76,64 @@ co(function* () {
         }
       });
     });
-    // response.send(nunjucks.render('templates/e_board_template.html'));
   });
+  // app.get('/', (request, response) => {
+  //   response.sendFile(path.join(__dirname, '/public/index.html'));
+  // });
+  // app.get('/index.html', (request, response) => {
+  //   response.sendFile(path.join(__dirname, '/public/index.html'));
+  // });
   app.get('/', (request, response) => {
-    response.sendFile(path.join(__dirname, '/public/index.html'));
+    getHomeData(db, (home) => {
+      const homeData = {};
+      nunjucks.render('templates/index_template.html', homeData, (err, res) => {
+        if (err) {
+          throw err;
+        } else {
+          response.send(res);
+        }
+      });
+    });
   });
   app.get('/index.html', (request, response) => {
-    response.sendFile(path.join(__dirname, '/public/index.html'));
+    getHomeData(db, (home) => {
+      const homeData = {};
+      nunjucks.render('templates/index_template.html', homeData, (err, res) => {
+        if (err) {
+          throw err;
+        } else {
+          response.send(res);
+        }
+      });
+    });
   });
-  // app.get('./public/history', (err, res) => {
-  //   getHistoryArticles(db, (items) => {
-  //     res.render('history.nunjucks', { items });
-  //   });
-  // });
-  // app.get('/newsletter/', (err, res) => {
-  //   getNewsletterArticles(db, (items) => {
-  //     res.render('newsletter.nunjucks', { items });
-  //   });
-  // });
+  app.get('/history/history.html', (request, response) => {
+    getHistoryArticles(db, (history) => {
+      const historyData = {};
+      nunjucks.render('templates/history_template.html', historyData, (err, res) => {
+        if (err) {
+          throw err;
+        } else {
+          response.send(res);
+        }
+      });
+    });
+  });
+  app.get('/newsletter/newsletter.html', (request, response) => {
+    getNewsletterArticles(db, (newsletter) => {
+      const newsletterData = {};
+      nunjucks.render('templates/newsletter_template.html', newsletterData, (err, res) => {
+        if (err) {
+          throw err;
+        } else {
+          response.send(res);
+        }
+      });
+    });
+  });
+  app.get('/donations/donations.html', (request, response) => {
+    response.sendFile(path.join(__dirname, '/public/donations/donations.html'));
+  });
 }).catch((err) => {
   console.log(err.stack);
 });
-
-// env.addFilter('getEboardMembers', (db, callback) => {
-//   getEboardMembers(db, callback);
-// }, true);
-
-// env.addFilter('getHomeData', (db, callback) => {
-//   getHomeData(db, callback);
-// }, true);
-
-// env.addFilter('getHistoryArticles', (db, callback) => {
-//   getHistoryArticles(db, callback);
-// }, true);
-
-// env.addFilter('getNewsletterArticles', (db, callback) => {
-//   getNewsletterArticles(db, callback);
-// }, true);
-// const Loader = nunjucks.Loader.extend({
-//   async: true,
-
-//   getSource: (name, callback) => {
-//     // load template
-//     callback(err, res);
-//   },
-// });
-
-// const appRouter = (app, queryMongo) => {
-//   app.get('/', (err, res) => {
-//     const collection = 'home';
-//     queryMongo(collection, (items) => {
-//       res.render('results', { items });
-//     });
-//   });
-
-//   app.get('/history', (err, res) => {
-//     const collection = 'history';
-//     queryMongo(collection, (items) => {
-//       res.render('results', { items });
-//     });
-//   });
-
-//   app.get('/newsletter', (err, res) => {
-//     const collection = 'newsletter';
-//     queryMongo(collection, (items) => {
-//       res.render('results', { items });
-//     });
-//   });
-
-//   app.get('/eboard', (err, res) => {
-//     const collection = 'eboard';
-//     queryMongo(collection, (items) => {
-//       res.render('results', { items });
-//     });
-//   });
-// };

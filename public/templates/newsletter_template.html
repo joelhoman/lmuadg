@@ -1,0 +1,18 @@
+{% extends "../newsletter/newsletter.html" %}
+
+{% block newsletter %}
+  {% asyncEach article in newsLetterArticles%}
+    <div class="container newsletter-article-container">
+      <div class="row">
+        <div class="col s12 center">
+          <h4 class="article-title">{{ article.title }}</h4>
+          <hr/>
+          <img class="responsive-img article-img" src="../images/spring2015pinning.jpg">
+          <p class="article-details">{{ article.date }}</p>
+          <p class="article-details">By: {{ article.author }}</p>
+          <p class="article-content">{{ article.content }}</p>
+        </div>
+      </div>
+    </div>
+  {% endeach %}
+{% endblock %}
