@@ -24,6 +24,22 @@ app.use('/navbar', express.static(path.join(__dirname, '/public/navbar')));
 app.use('/src', express.static(path.join(__dirname, '/public/src')));
 app.use('/footer', express.static(path.join(__dirname, '/public/footer')));
 
+app.use((req, res, next) => {
+  if (req.url === '/views/history.html') {
+    res.redirect(301, '/history');
+  } else if (req.url === '/views/e_board.html') {
+    res.redirect(301, '/eboard');
+  } else if (req.url === '/views/newsletter.html') {
+    res.redirect(301, '/newsletter');
+  } else if (req.url === '/views/social_media.html') {
+    res.redirect(301, '/social');
+  } else if (req.url === '/views/donations.html') {
+    res.redirect(301, '/donate');
+  } else {
+    next();
+  }
+});
+
 const getEboardMembers = (db, callback) => {
   db.collection('eboard').find({}).toArray((err, items) => {
     if (err) {
@@ -65,9 +81,9 @@ co(function* () {
   app.listen(app.get('port'), () => {
     console.log('Node app is running on port', app.get('port'));
   });
-  app.get('/e_board/e_board.html', (request, response) => {
+  app.get('/eboard', (request, response) => {
     getEboardMembers(db, (eboardMembers) => {
-      const eboardData = ({ eboardMembers: eboardMembers[0].members });
+      const eboardData = { eboardMembers: eboardMembers[0].members };
       nunjucks.render('templates/e_board_template.html', eboardData, (err, res) => {
         if (err) {
           throw err;
@@ -77,15 +93,9 @@ co(function* () {
       });
     });
   });
-  // app.get('/', (request, response) => {
-  //   response.sendFile(path.join(__dirname, '/public/index.html'));
-  // });
-  // app.get('/index.html', (request, response) => {
-  //   response.sendFile(path.join(__dirname, '/public/index.html'));
-  // });
   app.get('/', (request, response) => {
     getHomeData(db, (home) => {
-      const homeData = {};
+      const homeData = { fiveSs: home[0] };
       nunjucks.render('templates/index_template.html', homeData, (err, res) => {
         if (err) {
           throw err;
@@ -95,19 +105,7 @@ co(function* () {
       });
     });
   });
-  app.get('/index.html', (request, response) => {
-    getHomeData(db, (home) => {
-      const homeData = {};
-      nunjucks.render('templates/index_template.html', homeData, (err, res) => {
-        if (err) {
-          throw err;
-        } else {
-          response.send(res);
-        }
-      });
-    });
-  });
-  app.get('/history/history.html', (request, response) => {
+  app.get('/history', (request, response) => {
     getHistoryArticles(db, (history) => {
       const historyData = {};
       nunjucks.render('templates/history_template.html', historyData, (err, res) => {
@@ -119,9 +117,9 @@ co(function* () {
       });
     });
   });
-  app.get('/newsletter/newsletter.html', (request, response) => {
+  app.get('/newsletter', (request, response) => {
     getNewsletterArticles(db, (newsletter) => {
-      const newsletterData = {};
+      const newsletterData = { newsletterArticles: newsletter[0].articles };
       nunjucks.render('templates/newsletter_template.html', newsletterData, (err, res) => {
         if (err) {
           throw err;
@@ -131,8 +129,11 @@ co(function* () {
       });
     });
   });
-  app.get('/donations/donations.html', (request, response) => {
-    response.sendFile(path.join(__dirname, '/public/donations/donations.html'));
+  app.get('/social', (request, response) => {
+    response.sendFile(path.join(__dirname, 'public/views/social_media.html'));
+  });
+  app.get('/donate', (request, response) => {
+    response.sendFile(path.join(__dirname, '/public/views/donations.html'));
   });
 }).catch((err) => {
   console.log(err.stack);

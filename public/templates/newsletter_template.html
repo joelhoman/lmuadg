@@ -1,7 +1,7 @@
-{% extends "../newsletter/newsletter.html" %}
+{% extends "../views/newsletter.html" %}
 
 {% block newsletter %}
-  {% asyncEach article in newsLetterArticles%}
+  {% asyncEach article in newsletterArticles %}
     <div class="container newsletter-article-container">
       <div class="row">
         <div class="col s12 center">
@@ -10,6 +10,7 @@
           <img class="responsive-img article-img" src="../images/spring2015pinning.jpg">
           <p class="article-details">{{ article.date }}</p>
           <p class="article-details">By: {{ article.author }}</p>
+          <p class="article-details">Pictured: {{ article.pictured }}</p>
           <p class="article-content">{{ article.content }}</p>
         </div>
       </div>
