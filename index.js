@@ -3,6 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
 const co = require('co');
 const nunjucks = require('nunjucks');
 const path = require('path');
+const ObjectId = require('mongodb').ObjectID;
 
 const app = express();
 const url = 'mongodb://db_reader:db_reader@ds129600.mlab.com:29600/heroku_r48npwqx';
@@ -39,6 +40,15 @@ app.use((req, res, next) => {
     next();
   }
 });
+
+const getImage = (db, imageId, callback) => {
+  db.collection('fs.chunks').find({ _id: ObjectId(imageId) }).toArray((err, items) => {
+    if (err) {
+      throw err;
+    }
+    callback(items);
+  });
+};
 
 const getEboardMembers = (db, callback) => {
   db.collection('eboard').find({}).toArray((err, items) => {
@@ -83,7 +93,10 @@ co(function* () {
   });
   app.get('/eboard', (request, response) => {
     getEboardMembers(db, (eboardMembers) => {
-      const eboardData = { eboardMembers: eboardMembers[0].members };
+      const eboardData = {
+        eboardMembers: eboardMembers[0].members,
+        images: [],
+      };
       nunjucks.render('templates/e_board_template.html', eboardData, (err, res) => {
         if (err) {
           throw err;
@@ -118,14 +131,24 @@ co(function* () {
     });
   });
   app.get('/newsletter', (request, response) => {
+    let itemsprocessed = 0;
     getNewsletterArticles(db, (newsletter) => {
       const newsletterData = { newsletterArticles: newsletter[0].articles };
-      nunjucks.render('templates/newsletter_template.html', newsletterData, (err, res) => {
-        if (err) {
-          throw err;
-        } else {
-          response.send(res);
-        }
+      newsletterData.newsletterArticles.forEach((entry, index, array) => {
+        getImage(db, entry.imageId, (image) => {
+          const base64Image = new Buffer(image[0].data.buffer).toString('base64');
+          newsletterData.newsletterArticles[index].imageId = 'data:image/jpg;base64,' + base64Image;
+          itemsprocessed += 1;
+          if (itemsprocessed === array.length) {
+            nunjucks.render('templates/newsletter_template.html', newsletterData, (err, res) => {
+              if (err) {
+                throw err;
+              } else {
+                response.send(res);
+              }
+            });
+          }
+        });
       });
     });
   });
