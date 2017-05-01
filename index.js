@@ -93,13 +93,13 @@ co(function* () {
   });
   app.get('/', (request, response) => {
     getHomeData(db, (home) => {
-      const homeData = { fiveSs: home[0] };
-      getImage(db, homeData.fiveSs.upperImageId, (upperImage) => {
+      const homeData = { homePage: home[0] };
+      getImage(db, homeData.homePage.upperImageId, (upperImage) => {
         const base64UpperImage = new Buffer(upperImage[0].data.buffer).toString('base64');
-        homeData.fiveSs.upperImageId = 'data:image/jpg;base64,' + base64UpperImage;
-        getImage(db, homeData.fiveSs.lowerImageId, (lowerImage) => {
+        homeData.homePage.upperImageId = 'data:image/jpg;base64,' + base64UpperImage;
+        getImage(db, homeData.homePage.lowerImageId, (lowerImage) => {
           const base64LowerImage = new Buffer(lowerImage[0].data.buffer).toString('base64');
-          homeData.fiveSs.lowerImageId = 'data:image/jpg;base64,' + base64LowerImage;
+          homeData.homePage.lowerImageId = 'data:image/jpg;base64,' + base64LowerImage;
           nunjucks.render('templates/index_template.html', homeData, (err, res) => {
             if (err) {
               throw err;
@@ -112,14 +112,24 @@ co(function* () {
     });
   });
   app.get('/history', (request, response) => {
+    let itemsprocessed = 0;
     getHistoryArticles(db, (history) => {
-      const historyData = {};
-      nunjucks.render('templates/history_template.html', historyData, (err, res) => {
-        if (err) {
-          throw err;
-        } else {
-          response.send(res);
-        }
+      const historyData = { historyArticles: history[0].articles };
+      historyData.historyArticles.forEach((entry, index, array) => {
+        getImage(db, entry.imageId, (image) => {
+          const base64Image = new Buffer(image[0].data.buffer).toString('base64');
+          historyData.historyArticles[index].imageId = 'data:image/jpg;base64,' + base64Image;
+          itemsprocessed += 1;
+          if (itemsprocessed === array.length) {
+            nunjucks.render('templates/history_template.html', historyData, (err, res) => {
+              if (err) {
+                throw err;
+              } else {
+                response.send(res);
+              }
+            });
+          }
+        });
       });
     });
   });

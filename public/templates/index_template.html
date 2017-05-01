@@ -1,8 +1,8 @@
 {% extends "../index.html" %}
 
-{% block Ss %}
+{% block home %}
   <div class="parallax-container">
-    <div class="parallax"><img src="{{ fiveSs.upperImageId }}"></div>
+    <div class="parallax"><img src="{{ homePage.upperImageId }}"></div>
   </div>
 
   <div class="container">
@@ -12,7 +12,7 @@
           <div class="icon-block">
             <h3 class="center">Scholastic</h3>
 
-            <p class="light">{{ fiveSs.scholastic }}</p>
+            <p class="light">{{ homePage.scholastic }}</p>
           </div>
         </div>
 
@@ -20,7 +20,7 @@
           <div class="icon-block">
             <h3 class="center">School Spirit</h3>
 
-            <p class="light">{{ fiveSs.schoolSpirit }}</p>
+            <p class="light">{{ homePage.schoolSpirit }}</p>
           </div>
         </div>
 
@@ -28,7 +28,7 @@
           <div class="icon-block">
             <h3 class="center">Service</h3>
 
-            <p class="light">{{ fiveSs.service }}</p>
+            <p class="light">{{ homePage.service }}</p>
           </div>
         </div>
       </div>
@@ -39,14 +39,14 @@
         <div class="col s12 m4 offset-m2">
           <div class="icon-block">
             <h3 class="center">Spiritual</h3>
-            <p class="light">{{ fiveSs.spiritual }}</p>
+            <p class="light">{{ homePage.spiritual }}</p>
           </div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
             <h3 class="center">Social</h3>
-            <p class="light">{{ fiveSs.social }}</p>
+            <p class="light">{{ homePage.social }}</p>
           </div>
         </div>
       </div>
@@ -54,41 +54,14 @@
   </div>
 
   <div class="parallax-container">
-    <div class="parallax"><img src="{{ fiveSs.lowerImageId }}"></div>
+    <div class="parallax"><img src="{{ homePage.lowerImageId }}"></div>
   </div>
 
-{% endblock %}
-
-{% block moreInfo %}
   <div class="container">
-    <div class="section">
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col s4 center offset-s4">
+        <h3 class="center">About</h3>
+        <p class="light">{{ homePage.more }}</p>
       </div>
     </div>
   </div>
