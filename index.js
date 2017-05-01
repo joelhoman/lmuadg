@@ -91,30 +91,23 @@ co(function* () {
   app.listen(app.get('port'), () => {
     console.log('Node app is running on port', app.get('port'));
   });
-  app.get('/eboard', (request, response) => {
-    getEboardMembers(db, (eboardMembers) => {
-      const eboardData = {
-        eboardMembers: eboardMembers[0].members,
-        images: [],
-      };
-      nunjucks.render('templates/e_board_template.html', eboardData, (err, res) => {
-        if (err) {
-          throw err;
-        } else {
-          response.send(res);
-        }
-      });
-    });
-  });
   app.get('/', (request, response) => {
     getHomeData(db, (home) => {
       const homeData = { fiveSs: home[0] };
-      nunjucks.render('templates/index_template.html', homeData, (err, res) => {
-        if (err) {
-          throw err;
-        } else {
-          response.send(res);
-        }
+      getImage(db, homeData.fiveSs.upperImageId, (upperImage) => {
+        const base64UpperImage = new Buffer(upperImage[0].data.buffer).toString('base64');
+        homeData.fiveSs.upperImageId = 'data:image/jpg;base64,' + base64UpperImage;
+        getImage(db, homeData.fiveSs.lowerImageId, (lowerImage) => {
+          const base64LowerImage = new Buffer(lowerImage[0].data.buffer).toString('base64');
+          homeData.fiveSs.lowerImageId = 'data:image/jpg;base64,' + base64LowerImage;
+          nunjucks.render('templates/index_template.html', homeData, (err, res) => {
+            if (err) {
+              throw err;
+            } else {
+              response.send(res);
+            }
+          });
+        });
       });
     });
   });
@@ -127,6 +120,28 @@ co(function* () {
         } else {
           response.send(res);
         }
+      });
+    });
+  });
+  app.get('/eboard', (request, response) => {
+    let itemsprocessed = 0;
+    getEboardMembers(db, (eboardMembers) => {
+      const eboardData = { eboardMembers: eboardMembers[0].members };
+      eboardData.eboardMembers.forEach((entry, index, array) => {
+        getImage(db, entry.imageId, (image) => {
+          const base64Image = new Buffer(image[0].data.buffer).toString('base64');
+          eboardData.eboardMembers[index].imageId = 'data:image/jpg;base64,' + base64Image;
+          itemsprocessed += 1;
+          if (itemsprocessed === array.length) {
+            nunjucks.render('templates/e_board_template.html', eboardData, (err, res) => {
+              if (err) {
+                throw err;
+              } else {
+                response.send(res);
+              }
+            });
+          }
+        });
       });
     });
   });

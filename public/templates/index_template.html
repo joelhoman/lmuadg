@@ -1,13 +1,11 @@
 {% extends "../index.html" %}
 
 {% block Ss %}
-  <div class="container">
-   <!--  <div class="row">
-      <div class="col s12">
-        <h2 class="center">The 5 S's</h2>
-      </div>
-    </div> -->
+  <div class="parallax-container">
+    <div class="parallax"><img src="{{ fiveSs.upperImageId }}"></div>
+  </div>
 
+  <div class="container">
     <div class="section">
       <div class="row">
         <div class="col s12 m4">
@@ -53,6 +51,10 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="parallax-container">
+    <div class="parallax"><img src="{{ fiveSs.lowerImageId }}"></div>
   </div>
 
 {% endblock %}
